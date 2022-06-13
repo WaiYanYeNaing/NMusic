@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .player {
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer components {
+  .iframe-container {
+    @apply aspect-w-16 aspect-h-9 player hover:scale-110 hover:z-10 ease-in duration-300;
+  }
+
+  /* Menu Component */
+  .menu_icon {
+    @apply hover:scale-110 ease-in duration-100 transition cursor-pointer w-10 h-10 rounded-lg flex justify-center justify-items-center;
+  }
+  .menu_icon_active {
+    @apply hover:scale-110 ease-in duration-100 transition cursor-pointer w-10 h-10 rounded-lg flex justify-center items-center !mt-5 !mb-2 bg-black;
+  }
+
+  /* Music List */
+  .active_music {
+    @apply h-16 bg-skyblue rounded-md text-lightblack flex items-center justify-between pl-4;
+  }
+  .inactive_music {
+    @apply h-16 hover:bg-sky-50 hover:bg-opacity-40 active:bg-skyblue text-lightblack flex items-center justify-between pl-4;
+  }
+
+  /* Player Component */
+  .action_icon {
+    @apply hover:text-lightblack hover:scale-110 ease-in duration-100 transition cursor-pointer;
+  }
+}
