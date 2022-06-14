@@ -12,9 +12,10 @@ const Player = ({ props_ChangeMusic }) => {
 
   useEffect(() => {
     setMusic(props_ChangeMusic)
+    Pause()
     console.log(music)
   }, [props_ChangeMusic])
-  // je;;pc
+
   useEffect(() => {
     if (currentTime == duration) {
       Pause()
@@ -29,7 +30,7 @@ const Player = ({ props_ChangeMusic }) => {
       setDuration(
         (seconds - (seconds %= 60)) / 60 + (9 < seconds ? ':' : ':0') + seconds
       )
-    }, 100)
+    }, 300)
   }, [props_ChangeMusic])
 
   const Play = () => {
