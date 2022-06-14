@@ -72,13 +72,17 @@ const Player = ({ props_ChangeMusic }) => {
   const GetCurrentTime = () => {
     let intervalId = setInterval(() => {
       let seconds = Math.floor(audioElem.current.currentTime)
-      let seconds_d = Math.floor(audioElem.current.duration)
       setCurrentTime(
         (seconds - (seconds %= 60)) / 60 + (9 < seconds ? ':' : ':0') + seconds
       )
-      console.log(Math.floor(audioElem.current.currentTime))
-      console.log(Math.floor(audioElem))
-      setCurretnPercentage(((seconds * 100) / seconds_d).toFixed(2).toString())
+
+      let seconds_perc = Math.floor(audioElem.current.currentTime)
+      let seconds_perc_d = Math.floor(audioElem.current.duration)
+      let temp_currentPercentage = (
+        (seconds_perc * 100) /
+        seconds_perc_d
+      ).toFixed(2)
+      setCurretnPercentage(temp_currentPercentage)
     }, 1000)
     setCurrentTimeInterval(intervalId)
   }
