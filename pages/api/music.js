@@ -51,10 +51,17 @@ export default function handler(req, res) {
     },
     {
       id: 8,
-      name: 'Animal',
-      src: 'https://www.mboxdrive.com/Animal.mp3',
-      artist: 'Jim Yosef',
-      duration: '2:57',
+      name: 'Grenade',
+      src: 'https://www.mboxdrive.com/Grenade.mp3',
+      artist: 'Bruno Mars',
+      duration: '3:41',
+    },
+    {
+      id: 9,
+      name: 'Writing On The Wall',
+      src: 'https://www.mboxdrive.com/WritingOnTheWall.mp3',
+      artist: 'Sam Smith',
+      duration: '4:45',
     },
   ])
 }
