@@ -63,5 +63,26 @@ export default function handler(req, res) {
       artist: 'Sam Smith',
       duration: '4:45',
     },
+    {
+      id: 10,
+      name: 'Hate You',
+      src: 'https://www.mboxdrive.com/HateYou.mp3',
+      artist: 'Jim Yosef',
+      duration: '3:20',
+    },
+    {
+      id: 11,
+      name: 'Happier Than Ever',
+      src: 'https://www.mboxdrive.com/HappierThanEver.mp3',
+      artist: 'Billie Eilish',
+      duration: '4:59',
+    },
+    {
+      id: 12,
+      name: 'Sleepwalking',
+      src: 'https://www.mboxdrive.com/Sleepwalking.mp3',
+      artist: 'Lindsey Stirling',
+      duration: '4:06',
+    },
   ])
 }
