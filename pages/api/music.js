@@ -35,5 +35,26 @@ export default function handler(req, res) {
       artist: 'Lindsey Stirling',
       duration: '4:12',
     },
+    {
+      id: 6,
+      name: 'Call of Silence',
+      src: 'https://www.mboxdrive.com/CallOfSilence.mp3',
+      artist: 'AOT',
+      duration: '3:02',
+    },
+    {
+      id: 7,
+      name: 'Animal',
+      src: 'https://www.mboxdrive.com/Animal.mp3',
+      artist: 'Jim Yosef',
+      duration: '2:57',
+    },
+    {
+      id: 8,
+      name: 'Animal',
+      src: 'https://www.mboxdrive.com/Animal.mp3',
+      artist: 'Jim Yosef',
+      duration: '2:57',
+    },
   ])
 }
