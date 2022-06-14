@@ -3,7 +3,7 @@ import { MdOutlineQueueMusic } from 'react-icons/md'
 import { BsSpeaker, BsPauseFill } from 'react-icons/bs'
 import { RiSurroundSoundLine } from 'react-icons/ri'
 
-const Left = () => {
+const Left = ({ props_ChangeMusic }) => {
   return (
     <div className="bg-orange-300 h-screen col-span-4 relative">
       <img
@@ -17,7 +17,7 @@ const Left = () => {
       <div className="absolute text-sm flex flex-col px-6 justify-center bottom-0 w-full h-[18vh] text-white space-y-2">
         <p className="text-xs tracking-tight mt-5">NOW PLAYING</p>
         <div className="flex items-center justify-between">
-          <p>Island of Crystal and Peral</p>
+          <p>{props_ChangeMusic.name}</p>
           <div className="flex space-x-4">
             <MdOutlineQueueMusic size={'20px'} className="mt-[-2px]" />
             <BsSpeaker size={'17px'} className="mt-[-2px]" />

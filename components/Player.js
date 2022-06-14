@@ -8,13 +8,19 @@ const Player = ({ props_ChangeMusic }) => {
   const [isPlaying, setIsPlaying] = useState(false)
   const [duration, setDuration] = useState('0:00')
   const [currentTime, setCurrentTime] = useState('0:00')
+  const [curretnPercentage, setCurretnPercentage] = useState('0')
   const [currentTimeInterval, setCurrentTimeInterval] = useState()
 
   useEffect(() => {
     if (Object.keys(props_ChangeMusic).length) {
       setMusic(props_ChangeMusic)
       setDuration(props_ChangeMusic.duration)
+      setCurrentTime('0:00')
+      setCurretnPercentage('0')
       Pause()
+      setTimeout(() => {
+        Play()
+      }, 1000)
     }
     console.log(music)
   }, [props_ChangeMusic])
@@ -66,10 +72,13 @@ const Player = ({ props_ChangeMusic }) => {
   const GetCurrentTime = () => {
     let intervalId = setInterval(() => {
       let seconds = Math.floor(audioElem.current.currentTime)
+      let seconds_d = Math.floor(audioElem.current.duration)
       setCurrentTime(
         (seconds - (seconds %= 60)) / 60 + (9 < seconds ? ':' : ':0') + seconds
       )
       console.log(Math.floor(audioElem.current.currentTime))
+      console.log(Math.floor(audioElem))
+      setCurretnPercentage(((seconds * 100) / seconds_d).toFixed(2).toString())
     }, 1000)
     setCurrentTimeInterval(intervalId)
   }
@@ -96,7 +105,10 @@ const Player = ({ props_ChangeMusic }) => {
         <div>{currentTime}</div>
         <div className="mx-3">
           <div className="w-96 h-1 rounded-full bg-gray">
-            <div className="w-60 h-1 rounded-full bg-orange"></div>
+            <div
+              className="h-1 rounded-full bg-orange"
+              style={{ width: curretnPercentage + '%' }}
+            ></div>
           </div>
         </div>
         <div>{duration}</div>

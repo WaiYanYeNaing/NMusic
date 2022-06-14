@@ -62,7 +62,7 @@ const MusicList = ({ emit_ChangeMusic }) => {
               )}
               <div>
                 <p className="text-sm font-semibold">{v.name}</p>
-                <p className="text-xs text-gray">HOYO-MIX</p>
+                <p className="text-xs text-gray">{v.artist}</p>
               </div>
             </div>
             <div className="text-gray flex items-center w-[85px] justify-between mr-4">
