@@ -11,8 +11,11 @@ const Player = ({ props_ChangeMusic }) => {
   const [currentTimeInterval, setCurrentTimeInterval] = useState()
 
   useEffect(() => {
-    setMusic(props_ChangeMusic)
-    Pause()
+    if (Object.keys(props_ChangeMusic).length) {
+      setMusic(props_ChangeMusic)
+      setDuration(props_ChangeMusic.duration)
+      Pause()
+    }
     console.log(music)
   }, [props_ChangeMusic])
 
@@ -23,15 +26,20 @@ const Player = ({ props_ChangeMusic }) => {
     }
   }, [currentTime])
 
-  useEffect(() => {
-    //TODO: use setTimeout to wait data
-    setTimeout(() => {
-      let seconds = Math.floor(audioElem.current.duration)
-      setDuration(
-        (seconds - (seconds %= 60)) / 60 + (9 < seconds ? ':' : ':0') + seconds
-      )
-    }, 300)
-  }, [props_ChangeMusic])
+  // useEffect(() => {
+  //   //TODO: use setTimeout to wait data
+  //   setTimeout(() => {
+  //     let seconds = Math.floor(audioElem.current.duration)
+  //     console.log(seconds)
+  //     if (seconds) {
+  //       setDuration(
+  //         (seconds - (seconds %= 60)) / 60 +
+  //           (9 < seconds ? ':' : ':0') +
+  //           seconds
+  //       )
+  //     }
+  //   }, 300)
+  // }, [props_ChangeMusic])
 
   const Play = () => {
     // Play Music
@@ -93,10 +101,7 @@ const Player = ({ props_ChangeMusic }) => {
         </div>
         <div>{duration}</div>
       </div>
-      <audio
-        src={`./musics/${music.src ? music.src : '4sec.mp3'}`}
-        ref={audioElem}
-      />
+      <audio src={music.src} ref={audioElem} />
     </div>
   )
 }

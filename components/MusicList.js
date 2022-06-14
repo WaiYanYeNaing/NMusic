@@ -67,7 +67,7 @@ const MusicList = ({ emit_ChangeMusic }) => {
             </div>
             <div className="text-gray flex items-center w-[85px] justify-between mr-4">
               {IsActive(v.id) && <HiOutlineHeart size={'18px'} />}
-              <p className="text-sm mx-auto">4:15</p>
+              <p className="text-sm mx-auto">{v.duration}</p>
               {IsActive(v.id) && <HiDotsHorizontal size={'18px'} />}
             </div>
           </div>
