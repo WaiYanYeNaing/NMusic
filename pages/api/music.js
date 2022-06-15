@@ -61,7 +61,7 @@ export default function handler(req, res) {
       name: 'Writing On The Wall',
       src: 'https://www.mboxdrive.com/WritingOnTheWall.mp3',
       artist: 'Sam Smith',
-      duration: '4:45',
+      duration: '4:44',
     },
     {
       id: 10,
