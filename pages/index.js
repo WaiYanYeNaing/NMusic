@@ -5,6 +5,7 @@ import { MdOutlineQueueMusic } from 'react-icons/md'
 import { IoHeartCircle } from 'react-icons/io5'
 import Player from '../components/Player'
 import Menu from '../components/Menu'
+import DarkMode from '../components/DarkMode'
 import MusicList from '../components/MusicList'
 import Left from '../components/Left'
 import { useState } from 'react'
@@ -30,15 +31,15 @@ export default function Home() {
           {/* --------------------------------------------------------------------------------------------------- */}
 
           {/* Right */}
-          <div className="bg-white h-screen col-span-8 flex flex-col">
+          <div className="bg-white dark:bg-black h-screen col-span-8 flex flex-col">
             {/* Top */}
-            <div className="bg-skyblue h-[300px] px-6 pt-7">
+            <div className="bg-skyblue dark:bg-black h-[300px] px-6 pt-7">
               {/* Action */}
               <div className="flex items-center justify-between">
-                <div className="bg-white w-8 h-8 rounded-full flex items-center justify-center">
+                <div className="bg-white dark:bg-black w-8 h-8 rounded-full flex items-center justify-center">
                   <HiOutlineArrowLeft />
                 </div>
-                <div className="flex items-center text-gray text-sm font-semibold tracking-tight bg-white px-2 py-[4px] rounded-xl">
+                <div className="flex items-center text-gray-900 dark:text-gray-100 text-sm font-semibold tracking-tight bg-white dark:bg-black px-2 py-[4px] rounded-xl">
                   <img
                     src="./images/astronaut.jpg"
                     className="w-[23px] h-[23px] object-cover rounded-full mr-[10px]"
@@ -48,16 +49,18 @@ export default function Home() {
                     size={'12px'}
                     className="ml-2 text-lightblack"
                   />
+                  <DarkMode/>
                 </div>
+
               </div>
               {/* Header */}
               <div className="mt-2 font-semibold h-56 flex flex-col justify-evenly">
-                <div className="text-gray tracking-tight text-sm">ALBUM</div>
+                <div className="text-gray-800 dark:text-gray-100 tracking-tight text-sm">ALBUM</div>
                 <div className="text-5xl">
                   Islands of the Lost and
                   <br /> Forgotten
                 </div>
-                <div className="text-gray tracking-tight text-xs flex items-center space-x-6">
+                <div className="text-gray-800 dark:text-gray-100 tracking-tight text-xs flex items-center space-x-6">
                   <div className="flex w-auto">
                     <TiHeadphones size={'17px'} className="mt-[-2px] mr-2" />
                     HOUO-MIX
@@ -84,11 +87,11 @@ export default function Home() {
             {/* --------------------------------------------------------------------------------------------------- */}
 
             {/* Center */}
-            <MusicList emit_ChangeMusic={ChangeMusic} />
+            <MusicList emit_ChangeMusic={ChangeMusic}/>
             {/* --------------------------------------------------------------------------------------------------- */}
 
             {/* Bottom */}
-            <Player props_ChangeMusic={music} />
+            <Player props_ChangeMusic={music}/>
           </div>
         </div>
       </div>
