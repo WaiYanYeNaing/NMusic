@@ -2,7 +2,7 @@ import { BsShuffle, BsFillPlayFill, BsPauseFill } from 'react-icons/bs'
 import { CgPushChevronLeft, CgPushChevronRight, CgRepeat } from 'react-icons/cg'
 import { useEffect, useRef, useState } from 'react'
 
-const Player = ({ props_ChangeMusic }) => {
+const Player = ({ props_ChangeMusic, emit_NextMusic, emit_PrevMusic }) => {
   const audioElem = useRef()
   const [music, setMusic] = useState({})
   const [isPlaying, setIsPlaying] = useState(false)
@@ -12,6 +12,7 @@ const Player = ({ props_ChangeMusic }) => {
   const [currentTimeInterval, setCurrentTimeInterval] = useState()
 
   useEffect(() => {
+    console.log(props_ChangeMusic)
     if (Object.keys(props_ChangeMusic).length) {
       setMusic(props_ChangeMusic)
       setDuration(props_ChangeMusic.duration)
@@ -28,6 +29,7 @@ const Player = ({ props_ChangeMusic }) => {
   useEffect(() => {
     if (currentTime == duration) {
       Pause()
+      emit_NextMusic(true)
       console.log('stop')
     }
   }, [currentTime])
@@ -83,6 +85,8 @@ const Player = ({ props_ChangeMusic }) => {
         seconds_perc_d
       ).toFixed(2)
       setCurretnPercentage(temp_currentPercentage)
+
+      console.log(seconds)
     }, 1000)
     setCurrentTimeInterval(intervalId)
   }
@@ -91,18 +95,26 @@ const Player = ({ props_ChangeMusic }) => {
     <div className="bg-white dark:bg-black min-h-[13vh] border-t-2 border-skyblue flex flex-col justify-evenly">
       <div className="flex items-center justify-between text-gray dark:text-gray-100 w-60 mx-auto">
         <BsShuffle size={'17px'} className="action_icon" />
-        <CgPushChevronLeft size={'25px'} className="action_icon" />
+        <CgPushChevronLeft
+          size={'25px'}
+          className="action_icon"
+          onClick={() => emit_PrevMusic(true)}
+        />
         <div
-          className="bg-black dark:bg-white active:bg-lightblack transition w-11 h-11 rounded-full flex items-center justify-center cursor-pointer"
+          className="bg-black active:bg-lightblack hover:scale-105 active:scale-110 transition w-11 h-11 rounded-full flex items-center justify-center cursor-pointer"
           onClick={() => (isPlaying ? Pause() : Play())}
         >
           {isPlaying ? (
-            <BsFillPlayFill className="rounded-full bg-gray  text-white w-5 h-5 px-[2px]" />
+            <BsPauseFill className="rounded-full bg-gray text-white w-5 h-5 px-[2px]" />
           ) : (
-            <BsPauseFill className="rounded-full bg-gray   text-white w-5 h-5 px-[2px]" />
+            <BsFillPlayFill className="rounded-full bg-gray text-white w-5 h-5 px-[2px]" />
           )}
         </div>
-        <CgPushChevronRight size={'25px'} className="action_icon" />
+        <CgPushChevronRight
+          size={'25px'}
+          className="action_icon"
+          onClick={() => emit_NextMusic(true)}
+        />
         <CgRepeat size={'25px'} className="action_icon" />
       </div>
       <div className="flex items-center justify-center text-gray text-sm font-semibold">

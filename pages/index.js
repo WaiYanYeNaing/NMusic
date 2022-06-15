@@ -12,9 +12,21 @@ import { useState } from 'react'
 
 export default function Home() {
   const [music, setMusic] = useState({})
+  const [next, setNext] = useState({ key: 1, flag: false })
+  const [prev, setPrev] = useState({ key: 2, flag: false })
 
   const ChangeMusic = (v) => {
     setMusic(v)
+  }
+
+  const NextMusic = (v) => {
+    console.log('n')
+    setNext({ key: Math.random(), flag: v })
+  }
+
+  const PrevMusic = (v) => {
+    console.log('p')
+    setPrev({ key: Math.random(), flag: v })
   }
 
   return (
@@ -87,11 +99,19 @@ export default function Home() {
             {/* --------------------------------------------------------------------------------------------------- */}
 
             {/* Center */}
-            <MusicList emit_ChangeMusic={ChangeMusic}/>
+            <MusicList
+              emit_ChangeMusic={ChangeMusic}
+              props_NextMusic={next}
+              props_PrevMusic={prev}
+            />
             {/* --------------------------------------------------------------------------------------------------- */}
 
             {/* Bottom */}
-            <Player props_ChangeMusic={music}/>
+            <Player
+              props_ChangeMusic={music}
+              emit_NextMusic={NextMusic}
+              emit_PrevMusic={PrevMusic}
+            />
           </div>
         </div>
       </div>

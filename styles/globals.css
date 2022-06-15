@@ -36,6 +36,6 @@
 
   /* Player Component */
   .action_icon {
-    @apply hover:text-lightblack hover:scale-110 ease-in duration-100 transition cursor-pointer;
+    @apply hover:text-lightblack hover:scale-110 active:text-black active:scale-125 ease-in duration-100 transition cursor-pointer;
   }
 }

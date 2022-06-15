@@ -8,15 +8,25 @@ import { GiMusicSpell } from "react-icons/gi";
 import { RiHashtag } from "react-icons/ri";
 import axios from "axios";
 
-const MusicList = ({ emit_ChangeMusic }) => {
-  const [musics, setMusics] = useState([]);
-  const [current_music, setCurrent_music] = useState({});
+const MusicList = ({ emit_ChangeMusic, props_NextMusic, props_PrevMusic }) => {
+  const [musics, setMusics] = useState([])
+  const [current_music, setCurrent_music] = useState({})
 
   useEffect(() => {
     axios.get("/api/music").then((res) => {
       setMusics(res.data);
     });
   }, []);
+
+  useEffect(() => {
+    console.log(props_NextMusic)
+    if (props_NextMusic.flag) NextMusic()
+  }, [props_NextMusic])
+
+  useEffect(() => {
+    console.log(props_NextMusic)
+    if (props_PrevMusic.flag) PrevMusic()
+  }, [props_PrevMusic])
 
   const ChangeMusic = (id) => {
     let temp_musics = musics.slice();
@@ -26,6 +36,24 @@ const MusicList = ({ emit_ChangeMusic }) => {
 
     emit_ChangeMusic(temp_current_music);
   };
+
+  const NextMusic = () => {
+    if (Object.keys(current_music).length) {
+      const current_id = musics.findIndex((f) => f.id == current_music.id) + 1
+      if (current_id < musics.length) {
+        ChangeMusic(musics[current_id].id)
+      }
+    }
+  }
+
+  const PrevMusic = () => {
+    if (Object.keys(current_music).length) {
+      const current_id = musics.findIndex((f) => f.id == current_music.id) - 1
+      if (current_id >= 0) {
+        ChangeMusic(musics[current_id].id)
+      }
+    }
+  }
 
   const IsActive = (id) => {
     return current_music.id == id ? true : false;
