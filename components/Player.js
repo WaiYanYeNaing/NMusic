@@ -101,13 +101,13 @@ const Player = ({ props_ChangeMusic, emit_NextMusic, emit_PrevMusic }) => {
           onClick={() => emit_PrevMusic(true)}
         />
         <div
-          className="bg-black active:bg-lightblack hover:scale-105 active:scale-110 transition w-11 h-11 rounded-full flex items-center justify-center cursor-pointer"
+          className="bg-black dark:bg-gray active:bg-lightblack hover:scale-105 active:scale-110 transition w-11 h-11 rounded-full flex items-center justify-center cursor-pointer"
           onClick={() => (isPlaying ? Pause() : Play())}
         >
           {isPlaying ? (
-            <BsPauseFill className="rounded-full bg-gray text-white w-5 h-5 px-[2px]" />
+            <BsPauseFill className="rounded-full bg-gray dark:bg-black text-white w-5 dark:w-6 h-5 dark:h-6 px-[2px]" />
           ) : (
-            <BsFillPlayFill className="rounded-full bg-gray text-white w-5 h-5 px-[2px]" />
+            <BsFillPlayFill className="rounded-full bg-gray dark:bg-black text-white w-5 dark:w-6 h-5 dark:h-6 px-[2px]" />
           )}
         </div>
         <CgPushChevronRight
