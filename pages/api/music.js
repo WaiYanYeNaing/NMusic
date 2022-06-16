@@ -47,14 +47,14 @@ export default function handler(req, res) {
       name: 'Animal',
       src: 'https://www.mboxdrive.com/Animal.mp3',
       artist: 'Jim Yosef',
-      duration: '2:57',
+      duration: '2:56',
     },
     {
       id: 8,
       name: 'Grenade',
       src: 'https://www.mboxdrive.com/Grenade.mp3',
       artist: 'Bruno Mars',
-      duration: '3:41',
+      duration: '3:40',
     },
     {
       id: 9,
