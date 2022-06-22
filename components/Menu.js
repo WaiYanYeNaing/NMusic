@@ -9,6 +9,9 @@ import {
   AiFillEnvironment,
   AiFillLeftCircle,
 } from 'react-icons/ai'
+import { IoRadioSharp, IoMusicalNotesOutline } from 'react-icons/io5'
+import { TbPlaylist, TbMicrophone2 } from 'react-icons/tb'
+import { RiAlbumLine, RiVideoLine } from 'react-icons/ri'
 
 const Menu = () => {
   return (
@@ -18,44 +21,47 @@ const Menu = () => {
       </div>
       <div className="w-full flex flex-col justify-center items-center space-y-8">
         <div className="menu_icon">
-          <AiFillCiCircle
+          <IoRadioSharp
+            size={'25px'}
+            className="text-lightgray dark:text-white active:text-gray"
+          />
+        </div>
+        <div className="menu_icon">
+          <TbPlaylist
+            size={'25px'}
+            className="text-lightgray dark:text-white active:text-gray"
+          />
+        </div>
+        <div className="menu_icon">
+          <RiAlbumLine
             size={'25px'}
             className="text-lightgray dark:text-white active:text-gray"
           />
         </div>
         <div className="menu_icon_active">
-          <AiOutlineFrown
+          <IoMusicalNotesOutline
             size={'25px'}
             className="text-lightgray dark:text-white active:text-gray"
           />
         </div>
         <div className="menu_icon">
-          <AiFillCodepenCircle
+          <RiVideoLine
             size={'25px'}
             className="text-lightgray dark:text-white active:text-gray"
           />
         </div>
         <div className="menu_icon">
-          <AiFillCloud
-            size={'25px'}
-            className="text-lightgray dark:text-white active:text-gray"
-          />
-        </div>
-        <div className="menu_icon">
-          <AiFillDislike
-            size={'25px'}
-            className="text-lightgray dark:text-white active:text-gray"
-          />
-        </div>
-        <div className="menu_icon">
-          <AiFillEnvironment
+          <TbMicrophone2
             size={'25px'}
             className="text-lightgray dark:text-white active:text-gray"
           />
         </div>
       </div>
       <div className="w-full h-[4.5rem] flex justify-center items-center">
-        <AiFillLeftCircle size={'25px'} className="text-gray-900 dark:text-white" />
+        <AiFillLeftCircle
+          size={'25px'}
+          className="text-gray-900 dark:text-white"
+        />
       </div>
     </div>
   )

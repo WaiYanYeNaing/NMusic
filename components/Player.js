@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 const Player = ({ props_ChangeMusic, emit_NextMusic, emit_PrevMusic }) => {
   const audioElem = useRef()
   const [music, setMusic] = useState({})
+  const [isShuffle, setIsShuffle] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [duration, setDuration] = useState('0:00')
   const [currentTime, setCurrentTime] = useState('0:00')
@@ -27,27 +28,13 @@ const Player = ({ props_ChangeMusic, emit_NextMusic, emit_PrevMusic }) => {
   }, [props_ChangeMusic])
 
   useEffect(() => {
+    // Music end
     if (currentTime == duration) {
       Pause()
       emit_NextMusic(true)
       console.log('stop')
     }
   }, [currentTime])
-
-  // useEffect(() => {
-  //   //TODO: use setTimeout to wait data
-  //   setTimeout(() => {
-  //     let seconds = Math.floor(audioElem.current.duration)
-  //     console.log(seconds)
-  //     if (seconds) {
-  //       setDuration(
-  //         (seconds - (seconds %= 60)) / 60 +
-  //           (9 < seconds ? ':' : ':0') +
-  //           seconds
-  //       )
-  //     }
-  //   }, 300)
-  // }, [props_ChangeMusic])
 
   const Play = () => {
     // Play Music
@@ -94,7 +81,11 @@ const Player = ({ props_ChangeMusic, emit_NextMusic, emit_PrevMusic }) => {
   return (
     <div className="bg-white dark:bg-black min-h-[13vh] border-t-2 border-skyblue flex flex-col justify-evenly">
       <div className="flex items-center justify-between text-gray dark:text-gray-100 w-60 mx-auto">
-        <BsShuffle size={'17px'} className="action_icon" />
+        <BsShuffle
+          size={'17px'}
+          className={isShuffle ? 'action_icon_active' : 'action_icon'}
+          onClick={() => setIsShuffle(!isShuffle)}
+        />
         <CgPushChevronLeft
           size={'25px'}
           className="action_icon"

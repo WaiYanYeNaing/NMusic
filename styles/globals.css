@@ -23,7 +23,7 @@
     @apply hover:scale-110 ease-in duration-100 transition cursor-pointer w-10 h-10 rounded-lg flex justify-center justify-items-center;
   }
   .menu_icon_active {
-    @apply hover:scale-110 ease-in duration-100 transition cursor-pointer w-10 h-10 rounded-lg flex justify-center items-center !mt-5 !mb-2 bg-black;
+    @apply hover:scale-110 ease-in duration-100 transition cursor-pointer w-10 h-10 rounded-lg flex justify-center items-center !mt-5 !mb-2 bg-black dark:bg-lightblack;
   }
 
   /* Music List */
@@ -37,5 +37,8 @@
   /* Player Component */
   .action_icon {
     @apply hover:text-lightblack hover:scale-110 active:text-black active:scale-125 ease-in duration-100 transition cursor-pointer;
+  }
+  .action_icon_active {
+    @apply text-yellow  hover:scale-110 active:text-orange active:scale-125 ease-in duration-100 transition cursor-pointer;
   }
 }

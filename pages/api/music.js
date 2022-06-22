@@ -82,7 +82,7 @@ export default function handler(req, res) {
       name: 'Sleepwalking',
       src: 'https://www.mboxdrive.com/Sleepwalking.mp3',
       artist: 'Lindsey Stirling',
-      duration: '4:06',
+      duration: '4:05',
     },
   ])
 }
