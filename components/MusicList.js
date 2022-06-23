@@ -7,15 +7,21 @@ import {
 import { GiMusicSpell } from 'react-icons/gi'
 import { RiHashtag } from 'react-icons/ri'
 import axios from 'axios'
+import { useDispatch, useSelector } from 'react-redux'
 
 const MusicList = ({ emit_ChangeMusic, props_NextMusic, props_PrevMusic }) => {
+  const dispatch = useDispatch()
+
+  const isShuffle = useSelector((state) => state.shuffle.isShuffle)
+  const isLoop = useSelector((state) => state.loop.isLoop)
+
   const [musics, setMusics] = useState([])
-  const [current_music, setCurrent_music] = useState({})
+  const [current_music, storeRandom] = useState({})
 
   useEffect(() => {
     axios.get('/api/music').then((res) => {
       setMusics(res.data)
-      setCurrent_music(res.data[0])
+      storeRandom(res.data[0])
       // emit_ChangeMusic(res.data[0])
     })
   }, [])
@@ -34,14 +40,27 @@ const MusicList = ({ emit_ChangeMusic, props_NextMusic, props_PrevMusic }) => {
     let temp_musics = musics.slice()
 
     let temp_current_music = temp_musics.find((f) => f.id == id)
-    setCurrent_music(temp_current_music)
+    storeRandom(temp_current_music)
 
     emit_ChangeMusic(temp_current_music)
   }
 
   const NextMusic = () => {
     if (Object.keys(current_music).length) {
-      const current_id = musics.findIndex((f) => f.id == current_music.id) + 1
+      const current_id = 0
+      // Loop (Loop overwrite Shuffle)
+      if (isLoop) {
+        console.log(current_music)
+        current_id = musics.findIndex((f) => f.id == current_music.id)
+      } else {
+        // Shuffle
+        if (isShuffle) {
+          current_id = Math.floor(Math.random() * musics.length)
+        } else {
+          current_id = musics.findIndex((f) => f.id == current_music.id) + 1
+        }
+      }
+
       if (current_id < musics.length) {
         ChangeMusic(musics[current_id].id)
       }
@@ -50,7 +69,14 @@ const MusicList = ({ emit_ChangeMusic, props_NextMusic, props_PrevMusic }) => {
 
   const PrevMusic = () => {
     if (Object.keys(current_music).length) {
-      const current_id = musics.findIndex((f) => f.id == current_music.id) - 1
+      const current_id = 0
+      // Shuffle
+      if (isShuffle) {
+        current_id = Math.floor(Math.random() * musics.length)
+      } else {
+        current_id = musics.findIndex((f) => f.id == current_music.id) - 1
+      }
+
       if (current_id >= 0) {
         ChangeMusic(musics[current_id].id)
       }

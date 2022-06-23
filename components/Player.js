@@ -1,11 +1,18 @@
 import { BsShuffle, BsFillPlayFill, BsPauseFill } from 'react-icons/bs'
 import { CgPushChevronLeft, CgPushChevronRight, CgRepeat } from 'react-icons/cg'
 import { useEffect, useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { shuffleStatus } from '../store/shuffle'
+import { loopStatus } from '../store/loop'
 
 const Player = ({ props_ChangeMusic, emit_NextMusic, emit_PrevMusic }) => {
+  const dispatch = useDispatch()
+
+  const isShuffle = useSelector((state) => state.shuffle.isShuffle)
+  const isLoop = useSelector((state) => state.loop.isLoop)
+
   const audioElem = useRef()
   const [music, setMusic] = useState({})
-  const [isShuffle, setIsShuffle] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
   const [duration, setDuration] = useState('0:00')
   const [currentTime, setCurrentTime] = useState('0:00')
@@ -78,13 +85,21 @@ const Player = ({ props_ChangeMusic, emit_NextMusic, emit_PrevMusic }) => {
     setCurrentTimeInterval(intervalId)
   }
 
+  const Shuffle = () => {
+    dispatch(shuffleStatus())
+  }
+
+  const Loop = () => {
+    dispatch(loopStatus())
+  }
+
   return (
     <div className="bg-white dark:bg-black min-h-[13vh] border-t-2 border-skyblue flex flex-col justify-evenly">
       <div className="flex items-center justify-between text-gray dark:text-gray-100 w-60 mx-auto">
         <BsShuffle
           size={'17px'}
           className={isShuffle ? 'action_icon_active' : 'action_icon'}
-          onClick={() => setIsShuffle(!isShuffle)}
+          onClick={() => Shuffle()}
         />
         <CgPushChevronLeft
           size={'25px'}
@@ -106,7 +121,11 @@ const Player = ({ props_ChangeMusic, emit_NextMusic, emit_PrevMusic }) => {
           className="action_icon"
           onClick={() => emit_NextMusic(true)}
         />
-        <CgRepeat size={'25px'} className="action_icon" />
+        <CgRepeat
+          size={'25px'}
+          className={isLoop ? 'action_icon_active' : 'action_icon'}
+          onClick={() => Loop()}
+        />
       </div>
       <div className="flex items-center justify-center text-gray text-sm font-semibold">
         <div>{currentTime}</div>
